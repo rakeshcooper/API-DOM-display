@@ -1,44 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/main.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/main.css" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <ul class="list">
-
-        </ul>
+      <ul class="list"></ul>
     </div>
     <script>
-        
-        fetch("https://jsonplaceholder.typicode.com/users")
-        .then(res => { return res.json() })
-        .then((data) => {
-            console.log(data);
-            data.forEach(user => {
-                let list = document.querySelector('.list')
-                let markup = `<li>${user.name}</li>`
-                list.insertAdjacentHTML("beforeend",markup)
-                console.log(user.id)
-
-                let listData = document.querySelectorAll('.list li')
-
-                listData.forEach((dat) => {
-                    dat.addEventListener('click', ()=> {
-                        dat.style.backgroundColor = "red";
-                        if(user.id == user.id){
-                            console.log(dat.email);
-                        }
-                    })
-                    
-                })
-
-                
-            })
+      fetch("https://jsonplaceholder.typicode.com/users")
+        .then((res) => {
+          return res.json();
         })
+        .then((data) => {
+          data.forEach((user) => {
+            let list = document.querySelector(".list");
+            let markup = document.createElement("li");
+            markup.innerText = `${user.name}`;
+            markup.addEventListener("click", (e) => {
+              console.log(user);
+            });
+            list.appendChild(markup);
+          });
+        });
     </script>
-</body>
+  </body>
 </html>
